@@ -1,11 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>color 独立实验项目页</title>
+	<style>
+		#colorpalette,
+		#fullcolor {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		#colorpalette {
+			flex-direction: column;
+		}
+
+		#colorpalette span {
+			box-sizing: border-box;
+			min-width: 100px;
+			min-height: 1px;
+			/*background-color: #999;*/
+			flex: auto;
+			/*border: 1px salmon solid;*/
+		}
+
+
+		#colorpalette span:first-child {
+			background-image: linear-gradient(to right, #f00,  #0f0,  #00f,  #f00);
+		}
+
+		#colorpalette span:nth-child(2) {
+			background-image: linear-gradient(to right, #e00, #0e0, #00e, #e00);
+		}
+
+		#colorpalette span:nth-child(3) {
+			background-image: linear-gradient(to right, #d00, #0d0, #00d, #d00);
+		}
+
+		#colorpalette span:nth-child(4) {
+			background-image: linear-gradient(to right, #c00, #0c0, #00c, #c00);
+		}
+
+		.black {
+			flex: auto;
+			min-height: 100px;
+			background-color: #000;
+
+		}
+
+		.f0f0f0 {
+			background-color: #0f0f0f;
+			flex: auto;
+
+		}
+
+		.f1 {
+			background-color: #1f1f1f;
+			flex: auto;
+
+		}
+
+		body {
+			background-color: #666;
+		}
+
+		code {
+			display: none;
+		}
+	</style>
 </head>
+
 <body>
-	
+	<div id="fullcolor">
+		<span class="black"></span>
+		<span class='f0f0f0'></span>
+		<span class='f1'></span>
+	</div>
+
+	<div id="colorpalette">
+
+
+
+	</div>
+
+	<script>
+
+		const x=1<<8;
+		//处理暗部
+		for(let i=0;i<x;i++) {
+			console.log({i});
+			//const colorpalette=document.getElementById('colorpalette');
+			const e=document.createElement("span");
+			//	background-image: linear-gradient(to right, #f22, #2f2, #22f, #f22);
+			//这个算法可以完美的处理亮部.
+			e.style.backgroundImage='linear-gradient(to right,'+'rgb('+i+',0,0)'+','+'rgb(0,'+i+',0)'+','+'rgb(0,0,'+i+')'+','+'rgb('+i+',0,0)'+')';
+			colorpalette.appendChild(e);
+		}
+
+		//处理亮部
+		for(let i=0;i<x;i++) {
+			console.log({i});
+			//const colorpalette=document.getElementById('colorpalette');
+			const e=document.createElement("span");
+			//	background-image: linear-gradient(to right, #f22, #2f2, #22f, #f22);
+			//这个算法可以完美的处理亮部.
+			e.style.backgroundImage='linear-gradient(to right,'+'rgb(255,'+i+','+i+')'+','+'rgb('+i+',255,'+i+')'+','+'rgb('+i+','+i+',255)'+','+'rgb(255,'+i+','+i+')'+')';
+			colorpalette.appendChild(e);
+		}
+
+	</script>
+
+
+
+
+	<code >
+		这里不是代码
+		//24位方案不太行, 慢只是一个小问题, 对齐颜色是大问题.
+		const x=1<<24; 
+		for(let i=0; i<x ; i+=15) {
+			console.log({i});
+			//const colorpalette=document.getElementById('colorpalette');
+			const e=document.createElement("span");
+			const r=i>>16;
+			const g=i>>8&0x00ff;
+			const b=i&0x0000ff&i;
+			e.style.backgroundColor='rgb('+r+','+g+','+b+')';
+			colorpalette.appendChild(e);
+		}
+	</code>
 </body>
+
 </html>
