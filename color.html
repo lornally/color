@@ -25,7 +25,7 @@
 			/*border: 1px salmon solid;*/
 		}
 
-
+/* 暗部写法 */
 		#colorpalette span:first-child {
 			background-image: linear-gradient(to right, #f00,  #0f0,  #00f,  #f00);
 		}
@@ -40,6 +40,22 @@
 
 		#colorpalette span:nth-child(4) {
 			background-image: linear-gradient(to right, #c00, #0c0, #00c, #c00);
+		}
+/* 亮部写法 */
+		#colorpalette span:first-child {
+			background-image: linear-gradient(to right, #f00,  #0f0,  #00f,  #f00);
+		}
+
+		#colorpalette span:nth-child(2) {
+			background-image: linear-gradient(to right, #f11, #1f1, #11f, #f11);
+		}
+
+		#colorpalette span:nth-child(3) {
+			background-image: linear-gradient(to right, #f22, #2f2, #22f, #f22);
+		}
+
+		#colorpalette span:nth-child(4) {
+			background-image: linear-gradient(to right, #f33, #3f3, #33f, #f33);
 		}
 
 		.black {
@@ -87,25 +103,25 @@
 	<script>
 
 		const x=1<<8;
-		//处理暗部
+		//处理暗部+'rgb(0,'+i+',0)'+','
 		for(let i=0;i<x;i++) {
 			console.log({i});
 			//const colorpalette=document.getElementById('colorpalette');
 			const e=document.createElement("span");
 			//	background-image: linear-gradient(to right, #f22, #2f2, #22f, #f22);
 			//这个算法可以完美的处理亮部.
-			e.style.backgroundImage='linear-gradient(to right,'+'rgb('+i+',0,0)'+','+'rgb(0,'+i+',0)'+','+'rgb(0,0,'+i+')'+','+'rgb('+i+',0,0)'+')';
+			e.style.backgroundImage='linear-gradient(to right,'+'rgb('+i+',0,0)'+','+'rgb('+i+','+i+',0)'+','+'rgb(0,'+i+',0)'+','+'rgb(0,'+i+','+i+')'+','+'rgb(0,0,'+i+')'+','+'rgb('+i+',0'+','+i+')'+','+'rgb('+i+',0,0)'+')';
 			colorpalette.appendChild(e);
 		}
 
-		//处理亮部
+		//处理亮部'rgb(255,'+i+','+i+')'+','+
 		for(let i=0;i<x;i++) {
 			console.log({i});
 			//const colorpalette=document.getElementById('colorpalette');
 			const e=document.createElement("span");
 			//	background-image: linear-gradient(to right, #f22, #2f2, #22f, #f22);
 			//这个算法可以完美的处理亮部.
-			e.style.backgroundImage='linear-gradient(to right,'+'rgb(255,'+i+','+i+')'+','+'rgb('+i+',255,'+i+')'+','+'rgb('+i+','+i+',255)'+','+'rgb(255,'+i+','+i+')'+')';
+			e.style.backgroundImage='linear-gradient(to right,'+'rgb(255,'+i+','+i+')'+','+'rgb(255,255,'+i+')'+','+'rgb('+i+',255,'+i+')'+','+'rgb('+i+',255,255)'+','+'rgb('+i+','+i+',255)'+','+'rgb(255,'+i+',255)'+','+'rgb(255,'+i+','+i+')'+')';
 			colorpalette.appendChild(e);
 		}
 
